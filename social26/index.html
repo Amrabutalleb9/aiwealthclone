@@ -166,8 +166,8 @@ body{font-family:'Roboto',sans-serif;background:#efefef;color:#000;line-height:1
       <p class="modal-subtext">We Hate For You To Miss It...</p>
       <p class="modal-subtext">How About An Instant...</p>
       <div class="modal-discount">$30 Discount</div>
-      <a class="btn-discount" href="https://bo0126.pay.clickbank.net/?cbitems=7&amp;cbur=a" target="_top">Click Here To Get Discount</a>
-      <a class="modal-decline" href="https://bo0126.pay.clickbank.net/?cbitems=6&amp;cbur=d" target="_top">No Thanks, I Don't Want Extra Money, I Will Do It On my Own...</a>
+      <a class="btn-discount" href="https://www.jvzoo.com/b/115955/436113/99" target="_top">Click Here To Get Discount</a>
+      <a class="modal-decline" href="#" id="modalDecline">No Thanks, I Don't Want Extra Money, I Will Do It On my Own...</a>
     </div>
   </div>
 </div>
@@ -183,7 +183,32 @@ document.head.appendChild(s);
 
 <script>
 (function(){
+  function playBellHigh(){
+    try{
+      var AudioCtx=window.AudioContext||window.webkitAudioContext;
+      if(!AudioCtx)return;
+      var ctx=new AudioCtx();
+      var o1=ctx.createOscillator();
+      var o2=ctx.createOscillator();
+      var g=ctx.createGain();
+      o1.type='sine';
+      o2.type='triangle';
+      o1.frequency.value=1480;
+      o2.frequency.value=2093;
+      g.gain.setValueAtTime(0.0001,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.40,ctx.currentTime+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.55);
+      o1.connect(g);o2.connect(g);
+      g.connect(ctx.destination);
+      o1.start();o2.start();
+      o1.stop(ctx.currentTime+0.6);
+      o2.stop(ctx.currentTime+0.6);
+      setTimeout(function(){try{ctx.close();}catch(e){}},800);
+    }catch(e){}
+  }
+
   window.addEventListener('load', function(){
+    setTimeout(playBellHigh, 2000);
     setTimeout(function(){
       document.getElementById('ctaSection').classList.add('visible');
     }, 60000);

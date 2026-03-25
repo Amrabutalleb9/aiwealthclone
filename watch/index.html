@@ -16,6 +16,7 @@ s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','3456389114656700');
 fbq('track','PageView');
+fbq('track','Lead');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=3456389114656700&ev=PageView&noscript=1"/></noscript>
@@ -62,11 +63,23 @@ body{font-family:'Roboto',sans-serif;background:#efefef;color:#000;line-height:1
 .legal-links a{color:rgb(104,165,255);text-decoration:underline}
 .legal-links a:hover{text-decoration:none}
 
+.social-proof{position:fixed;bottom:20px;left:20px;background:#fff;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,0.18);padding:14px 18px;display:flex;align-items:center;gap:12px;z-index:900;max-width:360px;width:calc(100% - 40px);animation:slideIn 0.4s ease-out}
+.social-proof.hiding{animation:slideOut 0.4s ease-in forwards}
+@keyframes slideIn{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes slideOut{from{transform:translateY(0);opacity:1}to{transform:translateY(100px);opacity:0}}
+.social-proof-avatar{width:48px;height:48px;border-radius:50%;flex-shrink:0;object-fit:cover}
+.social-proof-content{flex:1;min-width:0}
+.social-proof-title{font-weight:700;font-size:13px;color:#0a58ca;margin-bottom:2px}
+.social-proof-body{font-size:12px;color:#111;line-height:1.3}
+.social-proof-amount{font-weight:700;color:#198754}
+.social-proof-time{font-size:11px;color:#777;margin-top:2px}
+
 @media (max-width:600px){
   .page-wrapper{box-shadow:none}
   .fb-comments{padding:0 10px}
   .page-footer{padding:20px 16px 30px}
   .disclaimer-text{font-size:12px}
+  .social-proof{bottom:10px;left:10px;max-width:calc(100% - 20px);padding:10px 14px}
 }
 </style>
 </head>
@@ -199,6 +212,8 @@ s.async=true;
 document.head.appendChild(s);
 </script>
 
+<div id="socialProofContainer"></div>
+
 <script>
 (function(){
   window.addEventListener('load', function(){
@@ -206,6 +221,47 @@ document.head.appendChild(s);
       document.getElementById('fbComments').classList.add('visible');
     }, 5000);
   });
+
+  var people = [
+    {name:'James', city:'Dubai', img:12},
+    {name:'Alex', city:'London', img:25},
+    {name:'Michael', city:'Austin', img:33},
+    {name:'Daniel', city:'Miami', img:45},
+    {name:'Ryan', city:'Toronto', img:18},
+    {name:'Christopher', city:'New York', img:51},
+    {name:'Kevin', city:'Sydney', img:9},
+    {name:'Brian', city:'Los Angeles', img:27}
+  ];
+  var banks = ['Citibank','Chase','Bank of America','HSBC','Barclays','Wells Fargo'];
+  var amounts = [136.46,149.88,173.21,198.55,214.73,241.79,263.88,284.19,318.44];
+
+  function showSocialProof(){
+    var container = document.getElementById('socialProofContainer');
+    var existing = container.querySelector('.social-proof');
+    if(existing) existing.remove();
+    var p = people[Math.floor(Math.random()*people.length)];
+    var bank = banks[Math.floor(Math.random()*banks.length)];
+    var amount = amounts[Math.floor(Math.random()*amounts.length)];
+    var mins = Math.floor(Math.random()*20)+1;
+    var toast = document.createElement('div');
+    toast.className = 'social-proof';
+    toast.innerHTML =
+      '<img class="social-proof-avatar" src="https://i.pravatar.cc/80?img='+p.img+'" alt="">'+
+      '<div class="social-proof-content">'+
+        '<div class="social-proof-title">Congratulations</div>'+
+        '<div class="social-proof-body">'+p.name+' from '+p.city+'<br>Withdrew <span class="social-proof-amount">$'+amount.toFixed(2)+'</span> to '+bank+'</div>'+
+        '<div class="social-proof-time">'+mins+' min ago</div>'+
+      '</div>';
+    container.appendChild(toast);
+    setTimeout(function(){
+      toast.classList.add('hiding');
+      setTimeout(function(){ toast.remove(); }, 400);
+    }, 5200);
+  }
+  setTimeout(function(){
+    showSocialProof();
+    setInterval(showSocialProof, 6500);
+  }, 1800);
 
   function exitHandler(e){
     var msg = 'Please Confirm That You Want To Forfeit Your Account (Holding Up To $134.46 Transferable To You Instantly)  For The Next Person In Line';
