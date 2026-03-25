@@ -208,12 +208,12 @@ body{
 .disclaimer-text{
   font-size:14px;
   line-height:1.4;
-  color:#000;
+  color:rgb(128,128,128);
   margin-bottom:16px;
 }
 .copyright-text{
-  font-size:14px;
-  color:rgb(128,128,128);
+  font-size:16px;
+  color:#000;
   margin-bottom:12px;
 }
 .legal-links{
@@ -234,98 +234,103 @@ body{
   inset:0;
   background:rgba(0,0,0,0.6);
   z-index:1000;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
+  overflow-y:auto;
+  padding:40px 20px;
 }
 .modal-overlay.active{
   display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .modal-box{
   background:#fff;
   border:4px dashed rgb(255,1,1);
-  border-radius:0;
-  max-width:380px;
+  max-width:669px;
   width:100%;
   position:relative;
-  text-align:center;
-  padding:30px 24px;
 }
 
 .modal-close{
   position:absolute;
-  top:10px;
-  right:10px;
+  top:12px;
+  right:12px;
   width:44px;
   height:44px;
   cursor:pointer;
-  opacity:0.7;
-  transition:opacity 0.2s;
+  z-index:2;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-.modal-close:hover{
-  opacity:1;
-}
-.modal-close svg{
-  width:20px;
-  height:20px;
+.modal-close img{
+  width:100%;
+  height:100%;
 }
 
-.modal-icon{
-  fill:rgb(255,0,46);
-  width:48px;
-  height:48px;
-  margin:0 auto 10px;
+.modal-red-bar{
+  background:rgb(255,0,46);
+  padding:25px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin:-4px -4px 0;
 }
-
-.modal-heading{
+.modal-warning-icon{
+  width:80px;
+  height:80px;
+  fill:#fff;
+  flex-shrink:0;
+}
+.modal-stop-text{
   font-family:'Montserrat',sans-serif;
-  font-weight:900;
-  font-size:38px;
-  color:rgb(255,0,46);
-  line-height:1.1;
-  margin-bottom:10px;
+  font-weight:800;
+  font-size:80px;
+  color:#fff;
+  letter-spacing:0.2em;
+  line-height:1;
+}
+
+.modal-body{
+  padding:30px 40px 40px;
+  text-align:center;
 }
 
 .modal-subtext{
   font-family:'Raleway',sans-serif;
   font-weight:700;
-  font-size:22px;
+  font-size:38px;
   color:#000;
   line-height:1.3;
-  margin-bottom:8px;
 }
 
 .modal-discount{
   font-family:'Montserrat',sans-serif;
-  font-weight:900;
+  font-weight:800;
   font-size:60px;
   color:rgb(255,0,46);
   line-height:1.1;
-  margin-bottom:16px;
+  margin:10px 0 20px;
 }
 
 .btn-discount{
-  display:inline-block;
+  display:block;
   background:linear-gradient(90deg,rgb(255,0,0) 0%,rgb(255,116,7) 100%);
   color:#fff;
   font-family:'Montserrat',sans-serif;
   font-weight:900;
-  font-size:18px;
-  line-height:1.3;
+  font-size:30px;
+  line-height:1.5;
   padding:16px 36px;
   border:none;
   border-radius:150px;
   text-decoration:none;
   text-align:center;
   cursor:pointer;
-  width:100%;
-  max-width:320px;
+  max-width:548px;
+  margin:0 auto 20px;
   transition:opacity 0.15s;
-  margin-bottom:16px;
 }
 .btn-discount:hover{
   opacity:0.9;
@@ -333,13 +338,10 @@ body{
 
 .modal-decline{
   display:block;
-  color:rgb(128,128,128);
-  font-size:14px;
-  text-decoration:none;
-  cursor:pointer;
-}
-.modal-decline:hover{
+  color:#000;
+  font-size:18px;
   text-decoration:underline;
+  cursor:pointer;
 }
 
 /* --- Social Proof Toast --- */
@@ -443,18 +445,28 @@ body{
   .disclaimer-text{
     font-size:12px;
   }
-  .modal-heading{
-    font-size:28px;
+  .modal-stop-text{
+    font-size:32px;
   }
-  .modal-discount{
-    font-size:42px;
+  .modal-warning-icon{
+    width:50px;
+    height:50px;
+  }
+  .modal-body{
+    padding:20px 16px 30px;
   }
   .modal-subtext{
-    font-size:18px;
+    font-size:24px;
+  }
+  .modal-discount{
+    font-size:45px;
   }
   .btn-discount{
-    font-size:16px;
+    font-size:20px;
     padding:14px 24px;
+  }
+  .modal-decline{
+    font-size:16px;
   }
   .social-proof{
     bottom:10px;
@@ -476,7 +488,7 @@ body{
 
   <!-- CTA Section (hidden until 160s after load) -->
   <div class="cta-section" id="ctaSection">
-    <a class="btn-buy" href="https://bo0126.pay.clickbank.net/?cbitems=2&amp;cbur=a" target="_top">Unlock Accelerator Now &gt;&gt;</a>
+    <a class="btn-buy" href="https://www.jvzoo.com/b/115955/436103/99" target="_top">Unlock Accelerator Now &gt;&gt;</a>
     <div class="price-block">
       <div class="price-main">ONLY $147 - ONE TIME FEE!</div>
       <div class="price-sub">&ldquo;This is a 1 Click Upsell and will be charged directly&rdquo;</div>
@@ -505,17 +517,19 @@ body{
 <div class="modal-overlay" id="discountModal">
   <div class="modal-box">
     <div class="modal-close" id="modalClose">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <img src="https://convertri.imgix.net/21900ed4-fe2a-11e8-bb43-0602f87a6cd8%2Fe22ebe1b1d0daa3e84e44d3c2c3dd2a8ffa5f83f%2Fx.png?auto=compress,format&fit=scale&w=44&h=44" alt="Close">
     </div>
-    <div class="modal-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+    <div class="modal-red-bar">
+      <svg class="modal-warning-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      <div class="modal-stop-text">STOP!!!</div>
     </div>
-    <div class="modal-heading">STOP!!!</div>
-    <p class="modal-subtext">We Hate For You To Miss It...</p>
-    <p class="modal-subtext">How About An Instant...</p>
-    <div class="modal-discount">$50 Discount</div>
-    <a class="btn-discount" href="https://bo0126.pay.clickbank.net/?cbitems=3&amp;cbur=a" target="_top">Click Here To Get Discount</a>
-    <a class="modal-decline" href="https://bo0126.pay.clickbank.net/?cbitems=2&amp;cbur=d" target="_top">No Thanks, I Don't Want Extra Money, I Will Do It On my Own...</a>
+    <div class="modal-body">
+      <p class="modal-subtext">We Hate For You To Miss It...</p>
+      <p class="modal-subtext">How About An Instant...</p>
+      <div class="modal-discount">$50 Discount</div>
+      <a class="btn-discount" href="https://www.jvzoo.com/b/115955/436103/99" target="_top">Click Here To Get Discount</a>
+      <a class="modal-decline" href="https://www.getaiwealth.co/dsaccelerator26" target="_top">No Thanks, I Don't Want Extra Money, I Will Do It On my Own...</a>
+    </div>
   </div>
 </div>
 
@@ -628,5 +642,6 @@ document.head.appendChild(s);
 })();
 </script>
 
+<img src="https://i.jvzoo.com/115955/436103/99" alt="AI Wealth Accelerator" border="0" width="1" height="1" />
 </body>
 </html>
