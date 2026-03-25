@@ -101,18 +101,25 @@ body{
 }
 
 .btn-decline{
-  display:inline-block;
-  background:none;
-  border:none;
-  color:rgb(128,128,128);
+  display:block;
+  background:rgb(219,52,52);
+  color:#fff;
   font-family:'Montserrat',sans-serif;
-  font-size:14px;
+  font-weight:900;
+  font-size:18px;
+  line-height:1.3;
+  padding:16px 40px;
+  border:none;
+  border-radius:3px;
   text-decoration:none;
+  text-align:center;
   cursor:pointer;
-  padding:8px 16px;
+  max-width:550px;
+  width:100%;
+  transition:opacity 0.15s;
 }
 .btn-decline:hover{
-  text-decoration:underline;
+  opacity:0.9;
 }
 
 .price-block{
@@ -132,27 +139,30 @@ body{
   line-height:1.4;
 }
 
-.money-back-img{
-  width:88px;
-  height:88px;
-}
-
-/* --- Scarcity Section --- */
-.scarcity-section{
-  display:none;
+.info-row{
+  display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:20px;
+  width:100%;
+  max-width:550px;
+}
+
+.scarcity-box{
+  display:flex;
+  align-items:center;
+  gap:8px;
   background:#fff4f4;
   border:1px solid #e02424;
   border-radius:8px;
-  padding:10px 20px;
-  margin:0 auto 30px;
-  max-width:500px;
-  width:calc(100% - 40px);
+  padding:8px 16px;
+  flex:1;
 }
-.scarcity-section.visible{
-  display:flex;
+
+.money-back-img{
+  width:88px;
+  height:88px;
+  flex-shrink:0;
 }
 
 .scarcity-dot{
@@ -408,11 +418,19 @@ body{
     font-size:18px;
     padding:16px 24px;
   }
+  .btn-decline{
+    font-size:15px;
+    padding:14px 20px;
+  }
   .price-main{
     font-size:28px;
   }
   .price-sub{
     font-size:18px;
+  }
+  .info-row{
+    flex-direction:column;
+    gap:12px;
   }
   .page-footer{
     padding:20px 16px 30px;
@@ -454,19 +472,19 @@ body{
   <!-- CTA Section (hidden until 160s after load) -->
   <div class="cta-section" id="ctaSection">
     <a class="btn-buy" href="https://bo0126.pay.clickbank.net/?cbitems=2&amp;cbur=a" target="_top">Unlock Accelerator Now &gt;&gt;</a>
-    <a class="btn-decline" href="#" id="btnDecline">No - I don't want any extra money</a>
     <div class="price-block">
       <div class="price-main">ONLY $147 - ONE TIME FEE!</div>
       <div class="price-sub">&ldquo;This is a 1 Click Upsell and will be charged directly&rdquo;</div>
     </div>
-    <img class="money-back-img" src="https://convertri.imgix.net/21900ed4-fe2a-11e8-bb43-0602f87a6cd8%2Ff0a0c9e698349373d83f3427a5b58d60238d22ac%2F21900ed4-fe2a-11e8-bb43-0602f87a6cd8_3019ab5f384c2b442dcc3e57f14d13d2ab5ba44f_money-back.png?auto=compress,format&fit=scale&w=88&h=88" alt="Money Back Guarantee">
-  </div>
-
-  <!-- Scarcity Counter -->
-  <div class="scarcity-section" id="scarcitySection">
-    <span class="scarcity-dot"></span>
-    <span class="scarcity-label">Spots Closing Fast...</span>
-    <span class="scarcity-counter" id="scarcityCounter">23/25</span>
+    <div class="info-row">
+      <div class="scarcity-box">
+        <span class="scarcity-dot"></span>
+        <span class="scarcity-label">Spots Closing Fast...</span>
+        <span class="scarcity-counter" id="scarcityCounter">23/25</span>
+      </div>
+      <img class="money-back-img" src="https://convertri.imgix.net/21900ed4-fe2a-11e8-bb43-0602f87a6cd8%2Ff0a0c9e698349373d83f3427a5b58d60238d22ac%2F21900ed4-fe2a-11e8-bb43-0602f87a6cd8_3019ab5f384c2b442dcc3e57f14d13d2ab5ba44f_money-back.png?auto=compress,format&fit=scale&w=88&h=88" alt="Money Back Guarantee">
+    </div>
+    <a class="btn-decline" href="#" id="btnDecline">No - I don't want any extra money</a>
   </div>
 
   <!-- Footer -->
@@ -512,7 +530,6 @@ document.head.appendChild(s);
   window.addEventListener('load', function(){
     setTimeout(function(){
       document.getElementById('ctaSection').classList.add('visible');
-      document.getElementById('scarcitySection').classList.add('visible');
     }, 160000);
   });
 
