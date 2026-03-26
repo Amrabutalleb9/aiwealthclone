@@ -37,6 +37,11 @@ body{font-family:'Roboto',sans-serif;background:#efefef;color:#000;line-height:1
 .video-section{display:flex;justify-content:center;padding:0}
 .video-section vturb-smartplayer{display:block;width:100%;max-width:400px;margin:0 auto}
 
+.cta-section{display:none;text-align:center;padding:20px 16px 10px}
+.cta-section.visible{display:block}
+.btn-cta{display:inline-block;background:rgb(219,52,52);color:#fff;font-family:'Roboto',sans-serif;font-weight:700;font-size:28px;line-height:1.3;padding:22px 40px;border:none;border-radius:8px;text-decoration:none;cursor:pointer;max-width:400px;width:100%;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 12px rgba(219,52,52,0.4)}
+.btn-cta:hover{transform:scale(1.02);box-shadow:0 6px 16px rgba(219,52,52,0.5)}
+
 .fb-comments{display:none;max-width:480px;margin:20px auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .fb-comments.visible{display:block}
 .fb-header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #ddd;margin-bottom:12px}
@@ -88,6 +93,10 @@ body{font-family:'Roboto',sans-serif;background:#efefef;color:#000;line-height:1
 <div class="page-wrapper">
   <div class="video-section">
     <vturb-smartplayer id="vid-69c04105d54d8d20f109e679" style="display:block;margin:0 auto;width:100%;max-width:400px;"></vturb-smartplayer>
+  </div>
+
+  <div class="cta-section" id="ctaSection">
+    <a class="btn-cta" href="https://www.jvzoo.com/b/115955/436101/99" target="_top">Create Your AI Wealth Account &gt;&gt;</a>
   </div>
 
   <div class="fb-comments" id="fbComments">
@@ -218,6 +227,7 @@ document.head.appendChild(s);
 (function(){
   window.addEventListener('load', function(){
     setTimeout(function(){
+      document.getElementById('ctaSection').classList.add('visible');
       document.getElementById('fbComments').classList.add('visible');
     }, 5000);
   });
